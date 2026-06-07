@@ -1,0 +1,19 @@
+CREATE KEYSPACE stock_keyspace
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'};
+
+
+CREATE TABLE stock_keyspace.stock_candles (
+    symbol text,
+    trade_date date,
+    candle_time timestamp,
+    open decimal,
+    high decimal,
+    low decimal,
+    close decimal,
+    volume bigint,
+    PRIMARY KEY ((symbol, trade_date), candle_time)
+)
+WITH CLUSTERING ORDER BY (candle_time ASC);
+
+
+
